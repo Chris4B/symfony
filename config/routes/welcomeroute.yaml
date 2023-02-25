@@ -1,0 +1,63 @@
+welcome_index:
+  methods: GET
+  path: index
+  controller: App\Controller\WelcomeController::index
+
+welcome_index_list:
+  methods: GET
+  path: index/list
+  controller: App\Controller\WelcomeController::list
+
+# avec un paramètre optionnel
+welcome_show:
+  methods: GET
+  path: show/{id?}
+  controller: App\Controller\WelcomeController::show
+
+# avec la méthode POST
+welcome_store:
+  methods: POST
+  path: store
+  controller: App\Controller\WelcomeController::store
+
+# avec la méthode PUT et un parametre en fin d'url
+welcome_update:
+  methods: PUT
+  path: update
+  controller: App\Controller\WelcomeController::update
+
+# avec la méthode delete et un parametre en fin d'url qui doit être uniquement des lettres
+welcome_delete:
+  methods: DELETE
+  path: delete/{id}
+  controller: App\Controller\WelcomeController::delete
+  requirements:
+    id: '[a-zA-Z]+'
+
+
+# Redirection interne invisible: redirection permanente entre index et  / en utilisant uniquement le nom des routes pour la redirection
+# cette route veut dire que à chaque fois que je tape index2, je suis ramené à index
+welcome_invisible_redirection:
+  methods: GET
+  path: index2
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+  defaults:
+    route: 'welcome_index'
+    permanent: true
+
+#Routage externe visible
+welcome_visible_redirection:
+  methods: GET
+  path: external
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+  defaults:
+    path: 'https://www.google.fr'
+    permanent: false
+
+
+
+
+
+
+
+
